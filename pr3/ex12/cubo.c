@@ -1,6 +1,6 @@
 #include "cubo.h"
 
-Cubo* cria_cubo(int lado){
+Cubo* cria_cubo(double lado){
     Cubo *c = (Cubo*)malloc(sizeof(Cubo));
 
     c->lado = lado;

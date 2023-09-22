@@ -5,13 +5,11 @@
 #include <stdlib.h>
 
 struct cubo{
-    int lado; 
-    int altura;
-    int profundidade; 
+    double lado; 
 };
 
 typedef struct cubo Cubo; 
 
-Cubo* cria_cubo(int);
+Cubo* cria_cubo(double);
 double area_cubo(Cubo*);
 double volume_cubo(Cubo*);

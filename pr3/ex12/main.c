@@ -2,7 +2,7 @@
 
 
 int main(int argc, char **argv){
-    int a = atoi(argv[1]);
+    double a = atof(argv[1]);
     Cubo *c = cria_cubo(a);
 
     printf("Area: %.4lf unidades quadradas\n", area_cubo(c));

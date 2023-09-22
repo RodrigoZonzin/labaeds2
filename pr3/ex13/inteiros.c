@@ -22,10 +22,10 @@ Inteiros* cria_conjunto_vazio(int n){
 
 void printa_conjunto(Inteiros *A){
     printf("[");
-    for(int i = 0; i < A->ocupado; i++){
+    for(int i = 0; i < A->ocupado-1; i++){
         printf("%d,", A->elemento[i]);
     }
-    printf("]\n");
+    printf("%d]\n", A->elemento[A->ocupado-1]);
 }
 
 int menor_valor(Inteiros *A){
@@ -63,32 +63,54 @@ void inserir_elemento(Inteiros *A, int ai){
     A->ocupado = A->ocupado + 1;
 }
 
-Inteiros* uniao(Inteiros *A, Inteiros *B){
-    
-    int maior_n = (A->n >= B->n) ? A->n : B->n;
-    int menor_n = (A->n < B->n) ? A->n : B->n;
+Inteiros* uniao(Inteiros *A, Inteiros *B) {
+    Inteiros *C = cria_conjunto_vazio(A->n + B->n);
 
-    Inteiros *C = cria_conjunto_vazio(menor_n);
+    for(int i = 0; i< A->ocupado; i++){
+        inserir_elemento(C, A->elemento[i]);
+    }
 
-    for(int i = 0; i<maior_n; i++){
-        for(int j = 0; j<menor_n; j++){
-            if(A->elemento[i] == B->elemento[j]){
-                C->elemento[j] = A->elemento[i];
-            }
+    for(int i = 0; i< B->ocupado; i++){
+        if(!pertence(A, B->elemento[i])){
+            inserir_elemento(C, B->elemento[i]);
         }
     }
 
     return C;
 }
 
+Inteiros* diferenca(Inteiros *A, Inteiros *B){
+    Inteiros *dif = cria_conjunto_vazio(A->n);
+
+    for(int i = 0; i< A->ocupado; i++){
+        if(!pertence(B, A->elemento[i])){
+            inserir_elemento(dif, A->elemento[i]);
+        }
+    }
+
+    return dif;
+}
+
+Inteiros* intersecao(Inteiros *A, Inteiros *B){
+    Inteiros *intersec = cria_conjunto_vazio(A->n);
+
+    for (int i = 0; i < A->ocupado; i++){
+        if(pertence(B, A->elemento[i])){
+            inserir_elemento(intersec, A->elemento[i]);
+        }
+    }
+
+    return intersec;
+}
+
 int tam_inteiros(Inteiros*A){
     return A->ocupado;
 }
 
-/* RETORNA 1 SE O CONJUNTO FOR VAZIO E 0 EM CONTRÁRIO*/
+// RETORNA 1 SE O CONJUNTO FOR VAZIO E 0 EM CONTRARIO
 int vazio(Inteiros *A){
     int i = 0;
-    while(A->elemento[i]){
+    while(i< A->ocupado){
         if(A->elemento[i] != -9999) return 0;
         i++;
     }
@@ -122,4 +144,9 @@ void remover_elemento(Inteiros *A, int ai){
         }
     }
     //qsort(A->elemento, A->n, sizeof(int), comparador);
+}
+
+void destroi(Inteiros *A){
+    free(A->elemento);
+    free(A);
 }
