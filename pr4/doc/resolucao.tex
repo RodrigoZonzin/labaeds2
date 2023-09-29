@@ -1,0 +1,268 @@
+\section{Lista Sequencial Estática}
+\subsection{}
+Implementado. 
+
+\subsection{}
+Operação Procura
+\begin{lstlisting}[language=C]
+	int Procura(Lista *li, int x){
+		for(int i = 0; i<= li->qtd; i++){
+			if(li->dados[i] == x) return i;
+		}
+		
+		return -1;
+	}
+\end{lstlisting}
+
+\subsection{} Inserção ordenada. 
+\begin{lstlisting}[language=C]
+int novoInsere(Lista* li, int elem){
+	if(li == NULL) return 0;
+	if(!listaCheia(li)){
+		li->dados[li->qtd] = elem;
+		li->qtd++;
+		
+		qsort(li->dados, li->qtd, sizeof(int), comparador);
+		return 1;
+	}
+	else return 0;
+}
+\end{lstlisting}
+
+\newpage
+\subsection{} Remoção de um elemento $x \in \ Lista$
+
+\begin{lstlisting}[language=C]
+	void removeLi(Lista *li, int item) {
+		for(int i = 0; i < li->qtd; i++){
+			if(li->dados[i] == item){
+				if (i < li->qtd - 1){
+					for (int j = i; j < li->qtd - 1; j++){
+						li->dados[j] = li->dados[j + 1];
+					}
+				}
+				li->qtd--;
+				return;
+			}
+		}
+	}
+\end{lstlisting}
+
+\section{Lista Simplesmente Encadeada}
+
+\subsection{} 
+O TAD foi reimplementado. O desenho rastreio não foi incluído já que para este autor ele é uma instância pertencente ao reino das ideias, na analogia platônica.  
+\label{sec:21} 
+
+\subsection{} Tamanho e Procura
+\begin{lstlisting}[language=C]
+	int tamanhoLi(Lista *li){
+		struct NO *corrente = (*li)->prox;
+		if(corrente == NULL) return 0;
+		
+		int tam = 1;
+		while(corrente != NULL){
+			tam++;
+			corrente = corrente->prox;
+		}
+		return tam;
+	}
+	
+	int procuraLi(Lista *li, int x){
+		struct NO *corrente = (*li)->prox;
+		if(corrente == NULL) return -1;
+		
+		int i = 1;
+		while(corrente != NULL){
+			if(corrente->info == x) return i;
+			corrente = corrente->prox;
+			i++;
+		}
+		return -1;
+	}
+\end{lstlisting}
+
+
+\subsection{} Inserção ordenada
+
+\begin{lstlisting}
+	void insereOrdenado(Lista* lista, int valor){
+		NO* novo = alocarNO();
+		
+		novo->info = valor;
+		novo->prox = NULL;
+		
+		NO* atual = *lista;
+		NO* anterior = NULL;
+		
+		while(atual != NULL && atual->info < valor){
+			anterior = atual;
+			atual = atual->prox;
+		}
+		
+		if(anterior == NULL){
+			novo->prox = *lista;
+			*lista = novo;
+		} 
+		
+		else{
+			anterior->prox = novo;
+			novo->prox = atual;
+		}
+	}
+\end{lstlisting}
+
+\subsection{} Remoção de um elemento. 
+\begin{lstlisting}
+	void removerElemento(Lista* lista, int valor) {
+		NO* atual = *lista;
+		NO* anterior = NULL;
+		
+		while(atual != NULL && atual->info != valor){
+			anterior = atual;
+			atual = atual->prox;
+		}
+		
+		if(atual == NULL) return;
+		
+		if(anterior == NULL) *lista = atual->prox;
+		else anterior->prox = atual->prox;
+		
+		free(atual);
+	}
+\end{lstlisting}
+
+\section{Lista Duplamente Encadeada}
+\subsection{} Mesma  situação da seção \ref{sec:21}. 
+\subsection{} Tamanho e Procura
+
+\begin{lstlisting}[language=C]
+	int tamanho(Lista* lista){
+		int tamanho = 0;
+		NO* atual = *lista;
+		
+		while(atual != NULL){
+			tamanho++;
+			atual = atual->prox; 
+		}
+		
+		return tamanho;
+	}
+	
+	int procura(Lista* lista, int x){
+		NO* atual = *lista; 
+		
+		while(atual != NULL){
+			if (atual->info == x){
+				return 1; 
+			}
+			atual = atual->prox; 
+		}
+		
+		return 0; 
+	}
+\end{lstlisting}
+
+\subsection{} Inserção ordenada
+\begin{lstlisting}[language=C]
+	void inserirOrdenado(Lista* lista, int x){
+		NO* novoNo = alocarNO();
+		novoNo->info = x; 
+		
+		if(*lista == NULL){
+			novoNo->prox = NULL;
+			novoNo->ant = NULL;
+			*lista = novoNo;
+		} 
+		else if(x <= (*lista)->info){
+			novoNo->prox = *lista;
+			novoNo->ant = NULL;
+			(*lista)->ant = novoNo;
+			*lista = novoNo;
+		} 
+		else{
+			NO* atual = *lista;
+			
+			while(atual->prox != NULL && atual->prox->info < x){
+				atual = atual->prox;
+			}
+			
+			novoNo->prox = atual->prox;
+			novoNo->ant = atual;
+			
+			if(atual->prox != NULL){
+				atual->prox->ant = novoNo;
+			}
+			
+			atual->prox = novoNo;
+		}
+	}
+\end{lstlisting}
+
+\subsection{} Remoção
+
+\begin{lstlisting}[language=C]
+	void removerElemento(Lista* lista, int valor) {
+		if (*lista == NULL) return;
+		
+		NO* atual = *lista;
+		
+		if(atual->info == valor){
+			*lista = atual->prox; 
+			if(*lista != NULL){
+				(*lista)->ant = NULL;
+			}
+			free(atual); 
+			return;
+		}
+		
+		while(atual != NULL && atual->info != valor){
+			atual = atual->prox;
+		}
+		
+		if(atual == NULL) return;
+		if(atual->ant != NULL) atual->ant->prox = atual->prox;
+		if(atual->prox != NULL) atual->prox->ant = atual->ant;
+		
+		free(atual); 
+	}
+\end{lstlisting}
+
+\section{Lista Circular Simplesmente Encadeada}
+\subsection{} Desenho mental. 
+\subsection{} Tamanho e Procura.
+\begin{lstlisting}[language=C]
+	int tamanho(Lista* li){
+		if(li == NULL || *li == NULL) return 0;
+		
+		int tamanho = 0;
+		NO* aux = *li;
+		
+		do{
+			tamanho++;
+			aux = aux->prox;
+		}while (aux != *li);
+		
+		return tamanho;
+	}
+	
+	int procura(Lista* li, int elem){
+		if(li == NULL || *li == NULL) return -1;
+		
+		int posicao = 0;
+		NO* aux = *li;
+		
+		do{
+			if(aux->info == elem) return posicao;
+			
+			posicao++;
+			aux = aux->prox;
+		}while(aux != *li);
+		
+		return -1; 
+	}
+\end{lstlisting}
+
+\subsection{Código}
+
+\href{https://github.com/RodrigoZonzin/labaeds2}{https://github.com/RodrigoZonzin/labaeds2}
