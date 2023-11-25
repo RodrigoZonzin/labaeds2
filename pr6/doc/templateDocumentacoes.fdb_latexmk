@@ -1,11 +1,11 @@
 # Fdb version 3
-["pdflatex"] 1698540422 "/home/zonzin/Documentos/Faculdade/labaedsii/labaeds2/pr6/doc/templateDocumentacoes.tex" "templateDocumentacoes.pdf" "templateDocumentacoes" 1698540422
+["pdflatex"] 1699669669 "/home/zonzin/Documentos/Faculdade/labaedsii/labaeds2/pr6/doc/templateDocumentacoes.tex" "templateDocumentacoes.pdf" "templateDocumentacoes" 1699669669
   "../ex11/matrizEstatica.c" 1698428679 2280 5ee4e339332f6b5d904b916399d6b2b6 ""
   "../ex11/matrizEstatica.h" 1698428404 164 70b2811739a3c12495374d7ea0f85d9c ""
   "../ex12/matriz.c" 1698429108 2194 91df3abde39e0e048f286b0c649d5c5a ""
   "../ex13/matrizFaixa.c" 1698430081 3193 2b4831268f1f9fdd95d635f8a8c2e208 ""
   "/etc/texmf/web2c/texmf.cnf" 1674528756 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/zonzin/Documentos/Faculdade/labaedsii/labaeds2/pr6/doc/templateDocumentacoes.tex" 1698540109 2073 3f6777200461583357f09bf9c04cf0b7 ""
+  "/home/zonzin/Documentos/Faculdade/labaedsii/labaeds2/pr6/doc/templateDocumentacoes.tex" 1699669610 2072 a8628f2231302ee02e3241b819dfad8f ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ectt1000.tfm" 1136768653 1536 06717a2b50de47d4087ac0e6cd759455 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm" 1136768653 1324 c910af8c371558dc20f2d7822f66fe64 ""
@@ -111,10 +111,10 @@
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1676076495 4379155 98693266ff65f58d9f98aff394de12d2 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1685622075 2800764 d8f652a4e8c4812111bfc9183e7239d9 ""
   "cabecalho.tex" 1698540420 461 09987814e84514e4bdb3d1925823ffa6 ""
-  "resolucao.tex" 1698540410 217 59d72115de1f538fae51e476ff66fb75 ""
-  "templateDocumentacoes.aux" 1698540422 32 3985256e7290058c681f74d7a3565a19 "pdflatex"
+  "resolucao.tex" 1699669666 218 1662ad01c70f890c2ab7d587a395fe77 ""
+  "templateDocumentacoes.aux" 1699669669 32 3985256e7290058c681f74d7a3565a19 "pdflatex"
   "templateDocumentacoes.out" 0 -1 0 "pdflatex"
-  "templateDocumentacoes.tex" 1698540109 2073 3f6777200461583357f09bf9c04cf0b7 ""
+  "templateDocumentacoes.tex" 1699669610 2072 a8628f2231302ee02e3241b819dfad8f ""
   "ufsj.jpg" 1698540109 228390 9572b95455e573e300b649f2b603a5e7 ""
   (generated)
   "templateDocumentacoes.aux"
